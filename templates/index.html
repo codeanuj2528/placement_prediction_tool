@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #20A39E;
+        }
+        .container {
+            background-color:#A4A9AD;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0) 20%, rgba(255,255,255,0.3) 21%, rgba(255,255,255,0.3) 34%, rgba(255,255,255,0) 35%, rgba(255,255,255,0) 50%);
+            transform: rotate(45deg);
+            z-index: -1;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+        input[type="number"] {
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Placement Prediction</h1>
+        <form action="{{ url_for('predict') }}" method="post">
+            <label for="cgpa">CGPA:</label>
+            <input type="float" id="cgpa" name="cgpa"  min="0" max="10" required>
+            
+            <label for="iq">IQ:</label>
+            <input type="number" id="iq" name="iq" min="0" max="200" required>
+            
+            <input type="submit" value="Predict">
+        </form>
+    </div>
+</body>
+</html>
